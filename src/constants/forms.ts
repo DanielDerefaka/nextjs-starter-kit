@@ -64,3 +64,25 @@ export const USER_LOGIN_FORM: UserRegistrationProps[] = [
         type: "password",
     },
 ]
+
+export const USER_FORGOT_PASSWORD_FORM: UserRegistrationProps[] = [
+    {
+      id: '1',
+      inputType: 'input', 
+      placeholder: 'Email',
+      name: 'email',
+      type: 'email',
+    },
+    
+  ]
+
+export const USER_RESET_PASSWORD_FORM: UserRegistrationProps[] = [
+ 
+    {
+        id: "2",
+        inputType: "input",
+        placeholder: "Enter your new password",
+        name: "newPassword",
+        type: "text",
+    },
+]

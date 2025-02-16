@@ -1,0 +1,147 @@
+
+// export const useForgotPassword = () => {
+//     const { isLoaded, signIn } = useSignIn();
+
+//     // Form for initiating the forgot password flow
+//     const {
+//         register: registerForgotPassword,
+//         handleSubmit: handleSubmitForgotPassword,
+//         formState: { errors: forgotPasswordErrors },
+//     } = useForm<z.infer<typeof forgotPasswordSchema>>({
+//         resolver: zodResolver(forgotPasswordSchema),
+//         mode: "onBlur",
+//     });
+
+//     // Form for resetting the password
+//     const {
+//         register: registerResetPassword,
+//         handleSubmit: handleSubmitResetPassword,
+//         formState: { errors: resetPasswordErrors },
+//     } = useForm<z.infer<typeof resetPasswordSchema>>({
+//         resolver: zodResolver(resetPasswordSchema),
+//         mode: "onBlur",
+//     });
+
+//     // Mutation to initiate the forgot password flow
+//     const { mutate: initiateForgotPasswordFlow, isPending: isForgotPasswordPending } = useMutation({
+//         mutationFn: async ({ email }: { email: string }) => {
+//             if (!isLoaded) {
+//                 throw new Error("Clerk is not loaded");
+//             }
+
+//             // Initiate the password reset flow
+//             const result = await signIn.create({
+//                 strategy: "reset_password_email_code",
+//                 identifier: email,
+//             });
+
+//             return result;
+//         },
+//         onSuccess: () => {
+//             console.log("Password reset email sent successfully");
+//         },
+//         onError: (error) => {
+//             console.error("Failed to send password reset email", error);
+//         },
+//     });
+
+//     // Mutation to reset the password
+//     const { mutate: resetPassword, isPending: isResetPasswordPending } = useMutation({
+//         mutationFn: async ({ code, newPassword }: { code: string; newPassword: string }) => {
+//             if (!isLoaded) {
+//                 throw new Error("Clerk is not loaded");
+//             }
+
+//             // Attempt to reset the password
+//             const result = await signIn.attemptFirstFactor({
+//                 strategy: "reset_password_email_code",
+//                 code,
+//                 password: newPassword,
+//             });
+
+//             return result;
+//         },
+//         onSuccess: () => {
+//             console.log("Password reset successfully");
+//         },
+//         onError: (error) => {
+//             console.error("Failed to reset password", error);
+//         },
+//     });
+
+//     // Handler for initiating the forgot password flow
+//     const onForgotPassword = handleSubmitForgotPassword((values) => {
+//         initiateForgotPasswordFlow({ email: values.email });
+//     });
+
+//     // Handler for resetting the password
+//     const onResetPassword = handleSubmitResetPassword((values) => {
+//         resetPassword({ code: values.code, newPassword: values.newPassword });
+//     });
+
+//     return {
+//         // Forgot Password
+//         onForgotPassword,
+//         registerForgotPassword,
+//         forgotPasswordErrors,
+//         isForgotPasswordPending,
+
+//         // Reset Password
+//         onResetPassword,
+//         registerResetPassword,
+//         resetPasswordErrors,
+//         isResetPasswordPending,
+//     };
+// };
+
+// export const useForgotPassword = () => {
+//     const { isLoaded, setActive, signIn } = useSignIn();
+
+//     const {
+//         register,
+//         handleSubmit,
+//         formState: { errors },
+//     } = useForm<z.infer<typeof forgotPasswordSchema>>({
+//         resolver: zodResolver(forgotPasswordSchema),
+//         mode: "onBlur",
+//     });
+
+//     const { mutate: initiateForgotPasswordFlow, isPending } = useMutation({
+//         mutationFn: async ({ email }: { email: string }) => {
+//             if (!isLoaded) {
+//                 throw new Error("Clerk is not loaded");
+//             }
+
+//             // Initiate the password reset flow
+//             const result = await signIn.create({
+//                 strategy: "reset_password_email_code",
+//                 identifier: email,
+//             });
+
+//             return result;
+//         },
+
+//         onSuccess: (result) => {
+//             // Handle success, e.g., show a success message or redirect
+//             console.log("Password reset initiated successfully", result);
+//         },
+//         onError: (error) => {
+//             // Handle error, e.g., show an error message
+//             console.error("Failed to initiate password reset", error);
+//         },
+//     });
+
+//     const onForgotPassword = handleSubmit((values) => {
+//         initiateForgotPasswordFlow({ email: values.email });
+//     });
+
+  
+
+
+//     return {
+//         onForgotPassword,
+//         register,
+//         errors,
+//         isPending,
+//     };
+// };

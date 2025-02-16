@@ -40,8 +40,7 @@ const SignUpForm = () => {
             console.error("Invalid OTP code")
             return
         }
-        const formValues = getValues()
-        onInitiateUserRegistration(formValues)
+       
     }
 
     return (
